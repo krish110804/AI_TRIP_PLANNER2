@@ -2,19 +2,21 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
+// ✅ Correct Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAdhM-ShjKTLUheZVmVflZBGYFsdqbWQuk",
-  authDomain: "trip-planner-a9a98.firebaseapp.com",
-  projectId: "trip-planner-a9a98",
-  storageBucket: "trip-planner-a9a98.firebasestorage.app",
-  messagingSenderId: "140222247567",
-  appId: "1:140222247567:web:fddf433d159106f63c76fa",
-  measurementId: "G-GXDHJXFS6W",
+  apiKey: "AIzaSyABPKkjKbz6Za028np_wEBPFiWLmqsdJlU",
+  authDomain: "aiproject-4ef93.firebaseapp.com",
+  projectId: "aiproject-4ef93",
+  storageBucket: "aiproject-4ef93.appspot.com", // ✅ fixed
+  messagingSenderId: "322581671153",
+  appId: "1:322581671153:web:7de87e0f4b464ae1f1cd50",
+  measurementId: "G-FC1LL4V3FZ",
 };
 
-// Initialize Firebase
+// 🔥 Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 // 🔐 Initialize Firebase Authentication
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
+provider.setCustomParameters({ prompt: "select_account" });

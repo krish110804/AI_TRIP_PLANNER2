@@ -12,7 +12,8 @@ export const signup = async (req, res) => {
   try {
     const { username, password } = req.body;
     const existingUser = await User.findOne({ username });
-    if (existingUser) return res.status(400).json({ msg: "User already exists" });
+    if (existingUser)
+      return res.status(400).json({ msg: "User already exists" });
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await User.create({ username, password: hashedPassword });
@@ -46,21 +47,33 @@ export const googleLogin = async (req, res) => {
   try {
     const { email, name, uid } = req.body;
 
-    // Check if user already exists
+    // 🔍 Check if user already exists (by email)
     let user = await User.findOne({ email });
+
+    // If not, create a new Google user (with unique username)
     if (!user) {
+      const uniqueUsername = `${name}-${uid.slice(0, 5)}`; // avoids duplicate usernames
+
       user = await User.create({
-        username: name,
+        username: uniqueUsername,
         email,
-        password: uid, // Firebase users won't use password login
+        password: uid, // not used for login, only placeholder
       });
     }
 
-    // Generate token for session
+    // 🎟 Generate JWT token
     const token = generateToken(user._id);
-    res.json({ token, username: user.username });
+
+    res.json({
+      token,
+      username: user.username,
+      msg: "✅ Google login successful",
+    });
   } catch (err) {
     console.error("Google login error:", err);
-    res.status(500).json({ msg: "Google login failed", error: err.message });
+    res.status(500).json({
+      msg: "❌ Google login failed",
+      error: err.message,
+    });
   }
 };
