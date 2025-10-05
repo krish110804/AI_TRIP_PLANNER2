@@ -24,7 +24,9 @@ Database	MongoDB (Mongoose ORM)
 Authentication	JWT + Firebase Auth
 AI Engine	OpenAI GPT-4o-mini
 Deployment	Render (Backend), Netlify/Vercel (Frontend)
+
 📂 Folder Structure
+ 
 ai-trip-planner/
 │
 ├── backend/
@@ -145,7 +147,10 @@ The response is parsed and saved as:
   "packing": ["Sunscreen", "Camera", "Hat"]
 }
 
-🌐 Website Pages <img width="1905" height="903" alt="Screenshot 2025-10-06 004851" src="https://github.com/user-attachments/assets/3a8553fa-3719-470d-81cb-73a18bb4eb38" />
+🌐 Website Pages 
+<img width="1912" height="904" alt="Screenshot 2025-10-06 004939" src="https://github.com/user-attachments/assets/06a096b7-78cf-4011-bdb4-65555b3ef0d0" />
+
+<img width="1905" height="903" alt="Screenshot 2025-10-06 004851" src="https://github.com/user-attachments/assets/3a8553fa-3719-470d-81cb-73a18bb4eb38" />
 
 Page	Description	Screenshot / Link
 🏠 Login Page	User can login using email or Google	[Insert Image / Link Here]
@@ -162,9 +167,6 @@ Page	Description	Screenshot / Link
 ### 📊 Dashboard
 ![Dashboard](./screenshots/dashboard.png)
 
-🎥 Demo Video
-
-🎬 [Insert video link here once recorded]
 
 🚀 Deployment
 Backend
