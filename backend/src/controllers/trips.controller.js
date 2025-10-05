@@ -83,26 +83,35 @@ export const deleteTrip = async (req, res) => {
     res.status(500).json({ msg: err.message });
   }
 };
-
-// 🤖 Generate AI Trip Plan (OpenAI Integration)
+// 🤖 Generate AI Trip Plan (OpenAI Integration + Custom Prompt)
 export const generateAIForTrip = async (req, res) => {
   try {
+    // Fetch the user's trip
     const trip = await Trip.findOne({
       _id: req.params.id,
       userId: req.user.id,
     });
+
     if (!trip) return res.status(404).json({ msg: "Trip not found" });
 
+    // Optional: custom prompt provided by the user (for personalization)
+    const userPrompt = req.body.prompt || "";
+
+    // 🧠 Build the AI prompt dynamically
     const prompt = `
 You are an expert AI travel planner.
-Create a detailed, personalized itinerary for this trip.
+Create a highly personalized and creative itinerary for this trip.
+
 Trip details:
 - Title: ${trip.title}
 - Destination: ${trip.destinations[0]?.name}
 - Dates: ${trip.destinations[0]?.startDate} to ${trip.destinations[0]?.endDate}
 - Budget: ₹${trip.budget}
 - Travel Style: ${trip.preferences.pace}, ${trip.preferences.type}
-Return your response in format:
+
+${userPrompt ? `User customization: ${userPrompt}` : ""}
+
+Return your response in this JSON format (strictly valid JSON only):
 {
   "summary": "Short summary",
   "itinerary": [
@@ -115,42 +124,48 @@ Return your response in format:
 
     // ✨ Call OpenAI API
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini", // use gpt-4o if available
+      model: "gpt-4o-mini", // can be upgraded to "gpt-4o" for best quality
       messages: [{ role: "user", content: prompt }],
+      temperature: 0.9,
     });
 
-    const aiResponse = completion.choices[0].message.content;
+    const aiResponse = completion.choices[0]?.message?.content?.trim();
 
+    // 🧩 Handle and parse AI response
     let parsedPlan;
 
-// If aiResponse is an object already, no need to parse
-if (typeof aiResponse === "object") {
-  parsedPlan = aiResponse;
-} else {
-  try {
-    // Try to parse if it's a valid JSON string
-    parsedPlan = JSON.parse(aiResponse);
-  } catch {
-    // If it's just plain text, wrap it nicely
-    parsedPlan = {
-      summary: typeof aiResponse === "string" ? aiResponse : "No summary available.",
-      itinerary: [],
-      packing: [],
-    };
-  }
-}
+    if (typeof aiResponse === "object") {
+      parsedPlan = aiResponse;
+    } else {
+      try {
+        parsedPlan = JSON.parse(aiResponse);
+      } catch {
+        parsedPlan = {
+          summary:
+            typeof aiResponse === "string"
+              ? aiResponse
+              : "Trip plan generated but could not be parsed.",
+          itinerary: [],
+          packing: [],
+        };
+      }
+    }
 
-trip.ai_plan = parsedPlan;
-await trip.save();
+    // 💾 Save to DB
+    trip.ai_plan = parsedPlan;
+    await trip.save();
 
-
+    // ✅ Respond to frontend
     res.json({
-      msg: "✅ AI trip plan generated successfully",
+      msg: "✅ AI trip plan generated successfully!",
       ai_plan: parsedPlan,
       trip,
     });
   } catch (err) {
     console.error("AI generation failed:", err);
-    res.status(500).json({ msg: "AI generation failed", error: err.message });
+    res.status(500).json({
+      msg: "❌ AI generation failed",
+      error: err.message,
+    });
   }
 };
