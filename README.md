@@ -12,7 +12,7 @@ With built-in authentication, a clean dashboard, and seamless integration of **O
 
 ## 🚀 Live Demo  
 🎥 **Video Demonstration:** (https://drive.google.com/file/d/1KUxzy7fSWQkUdbI8RnDDLKqNthwIOKFU/view?usp=drive_link) 
-🌐 **Deployed Website:** (https://ai-trip-planner-2-one.vercel.app/login)
+🌐 **Deployed Website:** (https://ai-trip-planner-2-one.vercel.app/)
 🧠 **Backend API:** (https://dashboard.render.com/web/srv-d3hb5oruibrs73aq0ud0/deploys/dep-d3hd63vfte5s73cs7gu0)
 
 ---
