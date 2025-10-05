@@ -19,7 +19,7 @@ const app = express();
 
 // 🛡️ Security & Middleware setup
 app.use(helmet()); // Adds secure headers
-app.use(cors({ origin: "http://localhost:5173", credentials: true })); // Allow frontend origin
+app.use(cors({ origin: "*"})); // Allow frontend origin
 app.use(express.json({ limit: "10mb" })); // Support larger JSON payloads
 app.use(morgan("dev")); // Logs HTTP requests in the console
 
