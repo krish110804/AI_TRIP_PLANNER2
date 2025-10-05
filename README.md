@@ -1,32 +1,167 @@
-🌍 AI Trip Planner
-🚀 Smart Travel Itinerary Generator using OpenAI, Firebase & MERN Stack
-🧭 Overview
+# 🌍 AI Trip Planner — Intelligent Travel Itinerary Generator  
 
-AI Trip Planner is a full-stack web application that helps users plan trips effortlessly using Artificial Intelligence.
-Users can log in (via Email or Google), create trips, and automatically generate personalized itineraries, packing lists, and summaries — all powered by OpenAI GPT models.
+> ✨ “Plan smarter, travel better — powered by OpenAI & Firebase.”
 
-✨ Features
-Feature	Description
-🔐 User Authentication	Login & Signup with JWT authentication
-🌐 Google Sign-In	Seamless Firebase-based Google login
-🧳 Trip Management	Create, view, and delete custom trips
-🤖 AI Itinerary Generator	Automatically generates trip summary, day-wise plan, and packing list
-🧠 OpenAI Integration	Uses GPT-4o-mini model for AI-based content
-💾 MongoDB Database	Stores user data and trip information securely
-🎨 Modern UI	Built with React + TailwindCSS
-📱 Responsive Design	Works smoothly across devices
-⚙️ Interactive Dashboard	Clean interface for managing all trips
-🧱 Tech Stack
-Layer	Technologies
-Frontend	React.js, TailwindCSS, Axios
-Backend	Node.js, Express.js
-Database	MongoDB (Mongoose ORM)
-Authentication	JWT + Firebase Auth
-AI Engine	OpenAI GPT-4o-mini
-Deployment	Render (Backend), Netlify/Vercel (Frontend)
+---
 
-📂 Folder Structure
- 
+## 🧭 Overview  
+**AI Trip Planner** is a full-stack web application that automatically creates personalized travel plans using **AI**.  
+With built-in authentication, a clean dashboard, and seamless integration of **OpenAI GPT** and **Firebase Google Login**, users can generate detailed itineraries, packing lists, and trip summaries — instantly.
+
+---
+
+## 🚀 Live Demo  
+🎥 **Video Demonstration:** (https://drive.google.com/file/d/1KUxzy7fSWQkUdbI8RnDDLKqNthwIOKFU/view?usp=drive_link) 
+🌐 **Deployed Website:** [https://ai-trip-planner.netlify.app](#)  
+🧠 **Backend API:** [https://ai-trip-planner-backend.onrender.com](#)
+
+---
+
+## 🖼️ Website Preview  
+
+### 🏠 Login Page  
+> Email + Google Login with Firebase Authentication  
+<img width="1912" height="904" alt="Screenshot 2025-10-06 004939" src="https://github.com/user-attachments/assets/5e95bf51-c8d3-4cdf-ad7a-b46cf3b09653" />
+
+
+---
+
+
+### 📊 Dashboard  
+> Create, view, delete, and generate AI-based trip plans  
+<img width="1905" height="903" alt="Screenshot 2025-10-06 004851" src="https://github.com/user-attachments/assets/23461316-0d90-4d27-a596-d0d4df66050a" />
+
+---
+
+### ✨ AI Trip Plan  
+> Beautifully structured AI-generated summary, itinerary, and packing list  
+<img width="929" height="883" alt="Screenshot 2025-10-06 004901" src="https://github.com/user-attachments/assets/ea2947f8-74da-471b-a363-15be63d7823f" />
+
+---
+
+## ⚙️ Features  
+
+✅ **User Authentication (JWT)** – Secure login & signup  
+✅ **Google Sign-In (Firebase Auth)** – One-click access with Google  
+✅ **AI Trip Planner (OpenAI GPT-4o-mini)** – Auto-generates custom itineraries  
+✅ **Trip Management (CRUD)** – Create, read, delete trips with ease  
+✅ **Responsive Design** – Built with TailwindCSS  
+✅ **Clean Dashboard UI** – Modern and minimalist interface  
+✅ **MongoDB Database** – Secure storage of user trips  
+✅ **Deployed on Render + Netlify** – Production-ready environment  
+
+---
+
+## 🧱 Tech Stack  
+
+| Layer | Technologies Used |
+|--------|-------------------|
+| **Frontend** | React.js, TailwindCSS, Axios |
+| **Backend** | Node.js, Express.js |
+| **Database** | MongoDB (Mongoose ORM) |
+| **Authentication** | JWT, Firebase Google Auth |
+| **AI Engine** | OpenAI GPT-4o-mini |
+| **Deployment** | Render (Backend), Netlify (Frontend) |
+
+---
+
+## ⚙️ Installation & Setup  
+
+### 🔸 Prerequisites  
+- Node.js (v18+)  
+- MongoDB installed locally or cloud instance  
+- OpenAI API key  
+- Firebase project setup  
+
+---
+
+### 🧩 Backend Setup  
+
+```bash
+cd backend
+npm install
+Create .env file inside backend/:
+
+env
+Copy code
+MONGO_URI=mongodb://localhost:27017/ai-trip-planner
+PORT=8000
+JWT_SECRET=mysecretkey123
+OPENAI_API_KEY=your_openai_api_key_here
+Run the backend server:
+
+bash
+Copy code
+npm run dev
+Server runs at:
+➡️ http://localhost:8000
+
+🎨 Frontend Setup
+bash
+Copy code
+cd frontend
+npm install
+npm start
+Create .env inside frontend/:
+
+env
+Copy code
+REACT_APP_BACKEND_URL=http://localhost:8000
+Frontend runs at:
+➡️ http://localhost:3000
+
+🔐 Firebase Setup
+Go to Firebase Console
+
+Create a new project
+
+Enable Google Authentication
+
+Copy the configuration and paste it in frontend/src/firebase.js
+
+js
+Copy code
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
+
+const firebaseConfig = {
+  apiKey: "YOUR_FIREBASE_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_MSG_ID",
+  appId: "YOUR_APP_ID",
+};
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
+🧠 OpenAI Integration
+In your trips.controller.js, the AI plan is generated as follows:
+
+js
+Copy code
+const completion = await openai.chat.completions.create({
+  model: "gpt-4o-mini",
+  messages: [{ role: "user", content: prompt }],
+});
+
+const aiResponse = completion.choices[0].message.content;
+The generated plan is saved to MongoDB in the following structure:
+
+json
+Copy code
+{
+  "summary": "Relaxing beach vacation in Goa.",
+  "itinerary": [
+    { "day": 1, "plan": "Arrive and relax at the beach" },
+    { "day": 2, "plan": "Visit Chapora Fort and enjoy local food" }
+  ],
+  "packing": ["Sunscreen", "Camera", "Beachwear"]
+}
+🗂 Folder Structure
+pgsql
+Copy code
 ai-trip-planner/
 │
 ├── backend/
@@ -58,142 +193,17 @@ ai-trip-planner/
 │   └── package.json
 │
 └── README.md
+💡 Future Enhancements
+🌍 Multi-destination trip planning
 
-⚙️ Installation & Setup
-🔸 Prerequisites
+🗺️ Google Maps integration
 
-Node.js (v18+)
+📅 Calendar view for itineraries
 
-MongoDB
+💬 Shareable trip links
 
-OpenAI API key
+📦 Export trip to PDF
 
-Firebase Project (for Google login)
-
-🔹 Backend Setup
-cd backend
-npm install
-
-
-Create a .env file in the backend folder:
-
-MONGO_URI=mongodb://localhost:27017/ai-trip-planner
-PORT=8000
-JWT_SECRET=mysecretkey123
-OPENAI_API_KEY=your_openai_api_key_here
-
-
-Run the backend:
-
-npm run dev
-
-
-Server will start at:
-👉 http://localhost:8000
-
-🔹 Frontend Setup
-cd frontend
-npm install
-npm start
-
-
-Create a .env file in frontend (if needed):
-
-REACT_APP_BACKEND_URL=http://localhost:8000
-
-
-Frontend runs at:
-👉 http://localhost:3000
-
-🔐 Firebase Configuration
-
-Create a Firebase project from Firebase Console
-.
-Enable Google Authentication and replace your config in frontend/src/firebase.js.
-
-import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
-
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_MSG_ID",
-  appId: "YOUR_APP_ID",
-};
-
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const provider = new GoogleAuthProvider();
-
-🧠 AI Integration (OpenAI)
-
-In trips.controller.js, AI plans are generated via OpenAI API:
-
-const completion = await openai.chat.completions.create({
-  model: "gpt-4o-mini",
-  messages: [{ role: "user", content: prompt }],
-});
-
-
-The response is parsed and saved as:
-
-{
-  "summary": "Short summary",
-  "itinerary": [
-    { "day": 1, "plan": "Arrive and explore the local area" }
-  ],
-  "packing": ["Sunscreen", "Camera", "Hat"]
-}
-
-🌐 Website Pages 
-<img width="1912" height="904" alt="Screenshot 2025-10-06 004939" src="https://github.com/user-attachments/assets/06a096b7-78cf-4011-bdb4-65555b3ef0d0" />
-
-<img width="1905" height="903" alt="Screenshot 2025-10-06 004851" src="https://github.com/user-attachments/assets/3a8553fa-3719-470d-81cb-73a18bb4eb38" />
-
-Page	Description	Screenshot / Link
-🏠 Login Page	User can login using email or Google	[Insert Image / Link Here]
-🧾 Signup Page	Create a new account	[Insert Image / Link Here]
-📊 Dashboard	View all trips, AI generation & delete feature	[Insert Image / Link Here]
-✨ AI Trip Plan	Displays generated itinerary and packing list beautifully	[Insert Image / Link Here]
-📸 Screenshots (To Add Later)
-
-🖼 You can add screenshots like this:
-
-### 🏠 Login Page
-![Login Page](./screenshots/login.png)
-
-### 📊 Dashboard
-![Dashboard](./screenshots/dashboard.png)
-
-
-🚀 Deployment
-Backend
-
-Hosted on Render
-Example: https://ai-trip-planner-backend.onrender.com
-
-Frontend
-
-Hosted on Vercel or Netlify
-Example: https://ai-trip-planner.netlify.app
-
-💡 Future Improvements
-
-🌎 Add Google Maps integration for location previews
-
-🗺 Allow multi-destination planning
-
-📅 Add calendar-based itinerary view
-
-💾 Enable saving and sharing trip plans
-
-🎙 Voice-assisted trip creation (speech-to-text)
-
-👨‍💻 Author
-
-Developed by: [Your Name]
-📧 Email: [Your Email Here]
-🌐 GitHub: [Your GitHub Profile]
-💼 LinkedIn: [Your LinkedIn Profile]
+👨‍💻 Developer Info
+Developed by: krish
+📧 Email: krish17aug04@gmail.com
