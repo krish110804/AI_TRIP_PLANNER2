@@ -40,12 +40,16 @@ With built-in authentication, a clean dashboard, and seamless integration of **O
 <img width="929" height="883" alt="Screenshot 2025-10-06 004901" src="https://github.com/user-attachments/assets/ea2947f8-74da-471b-a363-15be63d7823f" />
 
 ---
+## API Docs:-
+<img width="1918" height="768" alt="Screenshot 2025-10-06 124703" src="https://github.com/user-attachments/assets/4f7f42f0-b5c8-4874-8b3e-aa5943259aba" />
+<img width="1872" height="679" alt="Screenshot 2025-10-06 124834" src="https://github.com/user-attachments/assets/a602b9fb-53fc-4f4a-8266-dca01ce639f8" />
+<img width="1903" height="694" alt="Screenshot 2025-10-06 125049" src="https://github.com/user-attachments/assets/803f931e-7786-428f-8bac-388901904ff2" />
 
 ## ⚙️ Features  
 
 ✅ **User Authentication (JWT)** – Secure login & signup  
 ✅ **Google Sign-In (Firebase Auth)** – One-click access with Google  
-✅ **AI Trip Planner (OpenAI GPT-4o-mini)** – Auto-generates custom itineraries  
+✅ **AI Trip Planner (Gemini-CLI/OpenAI GPT-4o-mini)** – Auto-generates custom itineraries  
 ✅ **Trip Management (CRUD)** – Create, read, delete trips with ease  
 ✅ **Responsive Design** – Built with TailwindCSS  
 ✅ **Clean Dashboard UI** – Modern and minimalist interface  
