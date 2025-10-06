@@ -17,11 +17,15 @@ connectDB();
 
 const app = express();
 
-// 🛡️ Security & Middleware setup
+
 app.use(helmet()); // Adds secure headers
-app.use(cors());
-app.use(cors());
-app.options(/.*/, cors()); // regex version works universally
+
+app.use(cors({
+  origin: ["https://ai-trip-planner-2-one.vercel.app"], // ✅ your frontend domain
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+}));
+
 app.use(express.json({ limit: "10mb" })); // Support larger JSON payloads
 app.use(morgan("dev")); // Logs HTTP requests in the console
 
