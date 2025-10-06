@@ -20,7 +20,8 @@ const app = express();
 // 🛡️ Security & Middleware setup
 app.use(helmet()); // Adds secure headers
 app.use(cors());
-app.options('*', cors()); // handle preflight
+app.use(cors());
+app.options(/.*/, cors()); // regex version works universally
 app.use(express.json({ limit: "10mb" })); // Support larger JSON payloads
 app.use(morgan("dev")); // Logs HTTP requests in the console
 
