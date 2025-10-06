@@ -1,7 +1,8 @@
 import axios from "axios";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const API = axios.create({
-  baseURL: "https://ai-trip-planner-ue50.onrender.com/api", // backend base URL
+  baseURL: BACKEND_URL + "/api", // backend base URL
 });
 
 API.interceptors.request.use((req) => {

@@ -21,7 +21,7 @@ const app = express();
 app.use(helmet()); // Adds secure headers
 
 app.use(cors({
-  origin: ["https://ai-trip-planner-2-one.vercel.app"], // ✅ your frontend domain
+  origin: ["https://ai-trip-planner-2-one.vercel.app", 'http://localhost:5173'], // ✅ your frontend domain
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
