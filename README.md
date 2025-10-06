@@ -11,7 +11,7 @@ With built-in authentication, a clean dashboard, and seamless integration of **O
 ---
 
 ## 🚀 Live Demo  
-🎥 **Video Demonstration:** (https://drive.google.com/file/d/1KUxzy7fSWQkUdbI8RnDDLKqNthwIOKFU/view?usp=drive_link) 
+🎥 **Video Demonstration:** (https://drive.google.com/file/d/1KUxzy7fSWQkUdbI8RnDDLKqNthwIOKFU/view?usp=sharing)
 
 🌐 **Deployed Website:** (https://ai-trip-planner-2-one.vercel.app/)
 
