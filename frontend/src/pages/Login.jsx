@@ -113,12 +113,12 @@ export default function Login() {
           {loading ? "Signing in..." : "Sign in with Google"}
         </button>
 
-        {/* <p className="text-center mt-4 text-sm">
+        <p className="text-center mt-4 text-sm">
           Don’t have an account?{" "}
           <Link to="/signup" className="text-blue-400 hover:underline">
             Signup
           </Link>
-        </p> */}
+        </p>
       </div>
     </div>
   );
